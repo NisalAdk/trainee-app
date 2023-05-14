@@ -6,7 +6,8 @@ import './App.css';
 import Userlist from './component/UserList';
 import TrainingList from './component/TrainingList';
 import { Tabs, Tab } from '@mui/material';
-import Calendar from './component/Calendar'
+import Calendar from './component/Calendar';
+import Statistics from './component/Statistics';
 
 
 function App() {
@@ -22,12 +23,14 @@ function App() {
 
           <Tab value="Trainings" label="TrainingList" display="flex" />
           <Tab value="Calendar" label="Calendar" display="flex" />
+          <Tab value="Statistics" label="Statistics" display="flex" />
 
           </Tabs>
           </Stack>
           {value === 'Users' && <Userlist/>}
           {value === 'Trainings' && <TrainingList/>}
           {value === 'Calendar' && <Calendar/>}
+          {value === 'Statistics' && <Statistics/>}
           
     </div>
   );

@@ -6,43 +6,34 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 const localizer = momentLocalizer(moment);
 
 function MyCalendar() {
-	const [trainings, setTrainings] = useState([]);
+  const [trainings, setTrainings] = useState([]);
 
-	useEffect(() => fetchTrainings(), []);
+  useEffect(() => fetchTrainings(), []);
 
-	const fetchTrainings = () => {
-		fetch("https://traineeapp.azurewebsites.net/gettrainings")
-			.then(response => response.json())
-			.then(data => setTrainings(data));
-	};
+  const fetchTrainings = () => {
+    fetch("https://traineeapp.azurewebsites.net/gettrainings")
+      .then(response => response.json())
+      .then(data => setTrainings(data));
+  };
 
-	let events = [];
-	for (let i = 0; i < trainings.length; i++) {
-		events[i] = {
-			title:
-				trainings[i].activity +
-				" / " +
-				trainings[i].customer.firstname +
-				" " +
-				trainings[i].customer.lastname,
-			start: new Date(trainings[i].date),
-			end: new Date(trainings[i].date + trainings[i].duration * 60000),
+  const events = trainings.map(training => {
+    return {
+      title: training.activity,
+      start: moment(training.date).toISOString(),
+      end: moment(training.date).add(training.duration, 'minutes').toISOString()
+    }
+  });
 
-			allDay: false
-		};
-	}
-	console.log(events);
-
-	return (
-		<div className="container mt-3" style={{ height: "80vh" }}>
-			<Calendar
-				localizer={localizer}
-				events={events}
-				startAccessor="start"
-				endAccessor="end"
-			/>
-		</div>
-	);
+  return (
+    <div className="container mt-3" style={{ height: "80vh" }}>
+      <Calendar
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+      />
+    </div>
+  );
 }
 
 export default MyCalendar;

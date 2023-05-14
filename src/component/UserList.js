@@ -7,6 +7,8 @@ import Addcustomer from './AddCustomer';
 import Updatecustomer from './UpdateCustomer';
 import AddTraining from './AddTraining';
 
+
+
 export default function Userlist() {
     const [user, setUser] = useState([]);
     useEffect(() => fetchData, []);
@@ -100,7 +102,7 @@ export default function Userlist() {
     
         return (
         <div className="ag-theme-material" style={{ height: '700px', width: '90%', margin: 'auto' }} >
-            
+           
             <Addcustomer addCustomer={addCustomer} />
             <AgGridReact rowSelection="single" rowData={user} columnDefs={columns} animatedRows={true}  ></AgGridReact>
         </div>

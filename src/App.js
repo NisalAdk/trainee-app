@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+
+import React, { useState, useEffect, Component} from 'react';
+import Stack from '@mui/material/Stack';
 import './App.css';
 
+import Userlist from './component/UserList';
+import TrainingList from './component/TrainingList';
+import { Tabs, Tab } from '@mui/material';
+
+
 function App() {
+  const [value, setValue] = useState('one');
+  const tabChange = (event, value) => {
+    setValue(value);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Stack direction="column" spacing={2} justifyContent="center" alignItems="center" > 
+        <Tabs value={value} onChange={tabChange} variant="scrollable" >
+          <Tab value="Users" label="UserList" display="flex"/>
+
+          <Tab value="Trainings" label="TrainingList" display="flex" />
+          </Tabs>
+          </Stack>
+          {value === 'Users' && <Userlist/>}
+          {value === 'Trainings' && <TrainingList/>}
+          
     </div>
   );
 }

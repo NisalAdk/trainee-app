@@ -2,6 +2,8 @@
   "name": "finaltask",
   "version": "0.1.0",
   "private": true,
+  "repository": "git@github.com:NisalAdk/trainee-app.git",
+  "homepage":"https://nisaladk.github.io/trainee-app/",
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",

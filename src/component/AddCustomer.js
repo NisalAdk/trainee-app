@@ -27,6 +27,7 @@ export default function Addcustomer(props) {
     };
 
     const addCustomer = () => {
+        console.log("customer being added", customer) //debugging
         props.addCustomer(customer);
         handleClose();
     }
